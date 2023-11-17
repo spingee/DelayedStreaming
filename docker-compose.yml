@@ -1,0 +1,18 @@
+﻿services:
+  server:
+    image: server
+    build:
+      context: .
+      dockerfile: Server/Dockerfile
+    depends_on:
+        - redis
+  client:
+    image: client
+    build:
+      context: .
+      dockerfile: Client/Dockerfile
+    depends_on:
+        - server
+        - redis
+  redis:
+    image: redis:6-alpine
